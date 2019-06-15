@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# 00screensaver-lock: lock workstation on hibernate or suspend
+
+ username=kadar # add username here; i.e.: username=foobar
+ userhome=/home/$username
+ export XAUTHORITY="$userhome/.Xauthority"
+ export DISPLAY=":0"
+
+  case "$1" in
+    hibernate|suspend)
+       su $username -c "/usr/bin/i3lock"
+    ;;
+    thaw|resume)
+    ;;
+    *) exit $NA
+    ;;
+ esac
+

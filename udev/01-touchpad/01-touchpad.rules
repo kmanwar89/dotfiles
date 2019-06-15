@@ -1,0 +1,17 @@
+# Perform the touchpad disable action by executing a command
+SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="add", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/kadar/.Xauthority", RUN+="/usr/bin/synclient TouchpadOff=1"
+SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="remove", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/kadar/.Xauthority", RUN+="/usr/bin/synclient TouchpadOff=0"
+
+#### Alternate Way 1
+# The below section is for GDM, which would be Gnome Display Manager, used with Ubuntu
+#SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="add", PROGRAM="/usr/bin/find /var/run/gdm -name kadar -print -quit", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="$result/database", RUN+="/usr/bin/xinput disable 13"
+#SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="add", PROGRAM="/usr/bin/find /var/run/gdm -name kadar -print -quit", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="$result/database", RUN+="/bin/sh -c '/usr/bin/synclient TouchpadOff=1 ; sleep 1; /bin/killall syndaemon;'"
+#SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="remove", PROGRAM="/usr/bin/find /var/run/gdm -name kadar -print -quit", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="$result/database", RUN+="/usr/bin/xinput enable 13"
+
+#### Alternate Way 2
+# Perform the touchpad disable action by running a script
+#SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="remove", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/kadar/.Xauthority", RUN+="/bin/sh -c '/home/kadar/scripts/touchon.sh'"
+#SUBSYSTEM=="input", KERNEL=="mouse[0-9]*", ACTION=="add", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/kadar/.Xauthority", RUN+="/bin/sh -c '/home/kadar/scripts/touchoff.sh'"
+
+# Keybinding for use in i3 config file.
+# bindsym XF86TouchpadToggle exec “synclient TouchpadOff=$(synclient | awk ‘/TouchpadOff/ {print ($3+1)%2}’)”

@@ -1,0 +1,191 @@
+# Create own window instead of using desktop
+own_window yes
+own_window_hints undecorated,below,sticky,skip_pager,skip_taskbar
+# normal, desktop, override
+own_window_type normal
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background colour here
+#own_window_colour black
+
+background no
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer yes
+
+# Use Xft?
+use_xft yes
+
+# Update interval in seconds
+update_interval 1.0
+
+# Minimum size of text area
+#minimum_size 200 5
+maximum_width 260
+
+# Draw shades?
+draw_shades no
+
+# Text stuff
+draw_outline no # amplifies text if yes
+draw_borders no
+draw_graph_borders yes
+
+uppercase no # set to yes if you want all text to be in uppercase
+
+# Stippled borders?
+stippled_borders 1
+
+# border margins
+#border_margin 10  ########################## NO
+border_inner_margin 10
+
+# border width
+border_width 1
+
+# Set conky on the bottom of all other applications
+####################################################### own_window_hints below
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+gap_x 10
+gap_y 10
+
+# stuff after 'TEXT' will be formatted on screen
+override_utf8_locale yes
+xftfont Liberation Mono:bold:size=8
+xftalpha 0.5
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 1
+
+##########
+# Colors #
+##########
+color0 B0E0E6 # PowderBlue
+color1 6E7F80 # Light Blue Gray
+color2 536872 # Blue-ish
+color3 007777 # Aqua
+color4 536878 # Mist
+color5 CCCCCC # Gray80
+color6 543F9F # Dark Blue
+color7 777777 # Greyish
+color8 888888 # Steel Grey
+color9 708090 # Hex Slate Gray
+
+# Default colors and also border colors, grey90 == #e5e5e5
+default_color 808080
+default_shade_color gray
+default_outline_color gray
+
+TEXT
+#########
+# Clock #
+#########
+${alignc 13}${color3}${font Mono:size=12}${time %I:%M %p}${font}
+${alignc 13}${color1}${font Mono:size=10}${time %A, %B %d %Y}${font}
+
+${font Mono:size=10}${goto 51}${color}SU MO ${color0}${time %b %Y}${color} FR SA
+${goto 51}${color0}${execpi 1800 LAR=`date +%-d`; ncal -bh | sed '2d' | sed -e '1d' -e 's/\<'$LAR'\>/${color0}&${color0}/' | sed ':a;N;$!ba;s/\n/\n${goto 51}/g'}${color}${font}
+
+#################
+# MISC SYS INFO #
+#################
+${color3}${alignc}${font Mono:size=10} ${pre_exec cat /etc/issue.net}${font}
+
+${color8}Kernel: ${color5}$kernel${color8}
+Uptime: ${color5}$uptime${color}
+${color8}Battery:${color5} ${battery}
+${color8}Time Rem:${color5}${battery_time} ${battery_bar 6,75} ${color}
+##########
+#CPU TEMP#
+##########
+${color6}CPU Usage ${hr 2}${color}
+${color8}CPU: ${color5}Intel Core i5 M520 @ 2.4GHz${color}
+${color8}Frequency: ${color5}${alignr}$freq_g GHz${color}
+${color8}CPU Fan Speed: ${color5}${execi 2 cat /sys/devices/platform/thinkpad_hwmon/fan1_input}${color} RPM
+${cpugraph cpu1 18,260 999999 777777}
+${voffset -22}${goto 60}${color0}CORE 0: ${color2}${cpubar cpu1 9,77} ${color4} ${execi 1 sensors | grep "Core 0:" | cut -d+ -f2 | cut -c1-2}${color7}°C @ ${color3}${cpu cpu1}%${color}
+${cpugraph cpu2 18,260 999999 777777}
+${voffset -22}${goto 60}${color0}CORE 1: ${color2}${cpubar cpu2 8,77} ${color4} ${execi 1 sensors | grep "Core 0:" | cut -d+ -f2 | cut -c1-2}${color7}°C @ ${color3}${cpu cpu2}%${color}
+${cpugraph cpu3 18,260 999999 777777}
+${voffset -22}${goto 60}${color0}CORE 2: ${color2}${cpubar cpu3 8,77} ${color4} ${execi 1 sensors | grep "Core 2:" | cut -d+ -f2 | cut -c1-2}${color7}°C @ ${color3}${cpu cpu3}%${color}
+${cpugraph cpu4 18,260 999999 777777}
+${voffset -22}${goto 60}${color0}CORE 3: ${color2}${cpubar cpu4 8,77} ${color4} ${execi 1 sensors | grep "Core 2:" | cut -d+ -f2 | cut -c1-2}${color7}°C @ ${color3}${cpu cpu4}%${color}
+
+#####################
+# DRIVES AND MEMORY #
+#####################
+${color6}RAM & Disk Usage ${hr 2}
+${color8}RAM:${color0}${alignc}${offset 25}$mem${color4} | ${color3}$memmax${alignr}$memperc%${color}
+${membar 5,260}
+Linux${color0}${alignc}${offset 32}${fs_used /boot}${color4} | ${color3}${fs_size /boot} ${alignr} ${fs_free_perc /boot}%${color}
+${fs_bar 3,260 /boot}
+# Windows${color0}${alignc}${offset 20}${fs_used /media/mike/EVO}${color4} | ${color3}${fs_size /media/mike/EVO}${alignr}${fs_free_perc /media/mike/EVO}%${color}
+# ${fs_bar 3,260 /media/mike/EVO}
+SD Card${color0}${alignc}${offset 20}${fs_used /media/temetka/CHIP}${color4} | ${color3}${fs_size /media/temetka/CHIP}${alignr}${fs_free_perc /media/temetka/CHIP}%${color}
+${fs_bar 3,260 /media/temetka/CHIP}
+
+###########################
+# Top 5 Running Processes #
+###########################
+${color6}Top 5 Processes ${hr 2}
+${offset -11}${color0}${top cpu 1}%${alignc}${offset 30}${top name 1}$alignr${top pid 1}
+${offset -11}${color2}${top cpu 2}%${alignc}${offset 30}${top name 2}$alignr${top pid 2}
+${offset -11}${color4}${top cpu 3}%${alignc}${offset 30}${top name 3}$alignr${top pid 3}
+${offset -11}${color7}${top cpu 4}%${alignc}${offset 30}${top name 4}$alignr${top pid 4}
+${offset -11}${color3}${top cpu 5}%${alignc}${offset 30}${top name 5}$alignr${top pid 5}
+
+################
+# Network Info #
+################
+${color6}Network Analysis ${hr 2}
+${if_existing /proc/net/route wlan0}${color0}IP Address     ${color}${alignr}${color0}${addr wlan0}
+${color2}SSID               ${color2}${alignr}${wireless_essid wlan0}
+${color4}Signal Strength    ${color4}${alignr}${wireless_link_qual_perc wlan0}% ${wireless_link_bar 8,75 wlan0}
+
+${color0}Incoming:${alignc}${color2}${offset 30}${downspeedf wlan0}$alignr${color7}KB/s${color}
+${color8}${downspeedgraph wlan0 15,260 999999 777777}${color}
+${color3}${voffset -17}${alignc}${totaldown wlan0}${color}
+${color0}Outgoing:${alignc}${color2}${offset 30}${upspeedf wlan0}$alignr${color7}KB/s${color}
+${color8}${upspeedgraph wlan0 15,260 999999 777777}${color}
+${color3}${voffset -17}${alignc}${totalup wlan0}${color}
+
+################
+# WEATHER INFO #
+################
+# This weather info uses the 1a weather script found on the Crunchbang forums
+## ${execi 600 bash $HOME/1a_accuweather_conkyweather_font/1a}
+${font conkyweather:size=35}${execi 600  sed -n '2p' ~/1a_accuweather_conkyweather_font/curr_cond}${font}
+${voffset -38}${goto 70}${color2}CURRENTLY  ${execpi 600 sed -n '4p' $HOME/1a_accuweather_conkyweather_font/curr_cond}°F${color}
+${goto 70}${color3}${execpi 600 sed -n '3p' $HOME/1a_accuweather_conkyweather_font/curr_cond}${color}
+
+${font conkyweather:size=35}${execi 600  sed -n '2p' ~/1a_accuweather_conkyweather_font/tod_ton}${font}
+${voffset -38}${color2}${goto 70}${execpi 600 sed -n '1p' $HOME/1a_accuweather_conkyweather_font/tod_ton}  \
+${execpi 600 sed -n '4p' $HOME/1a_accuweather_conkyweather_font/tod_ton}°F / \
+${execpi 600 sed -n '5p' $HOME/1a_accuweather_conkyweather_font/tod_ton}°F${color2}
+${goto 70}${color3}${execpi 600 sed -n '3p' $HOME/1a_accuweather_conkyweather_font/tod_ton}${color}
+
+${font conkyweather:size=35}${execi 600  sed -n '7p' ~/1a_accuweather_conkyweather_font/tod_ton}${font}
+${voffset -38}${color2}${goto 70}${execpi 600 sed -n '6p' $HOME/1a_accuweather_conkyweather_font/tod_ton}  \
+${execpi 600 sed -n '9p' $HOME/1a_accuweather_conkyweather_font/tod_ton}°F / \
+${execpi 600 sed -n '10p' $HOME/1a_accuweather_conkyweather_font/tod_ton}°F${color2}
+${goto 70}${color3}${execpi 600 sed -n '8p' $HOME/1a_accuweather_conkyweather_font/tod_ton}${color}

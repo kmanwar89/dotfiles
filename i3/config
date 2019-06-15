@@ -201,9 +201,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-
-
-
 ########################
 #Customizations June 2019
 ########################
@@ -211,37 +208,44 @@ bindsym $mod+r mode "resize"
 ########################
 #      HARDWARE        #
 ########################
-# Fix Screen Backlight Keys
-# -------------------------
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 2 # Increase by 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # Decrease by 10
 
-# Does not work as well, and requires extra steps with xorg.conf in /etc/X11
-#bindsym XF86MonBrightnessUp exec xbacklight +5 # Increase by 5
-#bindsym XF86MonBrightnessDown exec xbacklight -5 # Decrease by 5
-
-# Disable Touchscreen
-exec --no-startup-id xinput disable "ELAN Touchscreen" # Validated working 4 JUNE
-
-# Keyboard delay, 250ms, 25ms repeat
-exec --no-startup-id xset r rate 250 25
+##########
+#Keyboard#
+##########
+# Media keys
+bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse set Master 5%+ && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse set Master 5%- && killall -SIGUSR1 i3status
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle && killall -SIGUSR1 i3status
 
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-#bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+# Screen brightness keys
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 2 # Increase by 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # Decrease by 10
 
-# Sleep key
-bindsym F9 exec sleep 1 && xset dpms force off
+# Keyboard delay, 250ms, 25ms repeat
+exec --no-startup-id xset r rate 250 25
 
-# Touchpad toggle
+#############
+#Touchscreen#
+#############
+# Disable touchscreen
+exec –no-startup-id xinput disable “ELAN Touchscreen”
+
+##########
+#Touchpad#
+##########
+# Touchpad toggle script
 bindsym F7 exec --no-startup-id sh /home/kadar/.i3/touchpad/toggle.sh
+
+# Natural scrolling - included in toggle script
+# Disable while typing - included in toggle script
+
+# Disable on external mouse - handled by /etc/udev/rules.d/01-touchpad.rules
 
 ########################
 #       SOFTWARE       #
@@ -298,7 +302,7 @@ bindsym $mod+t bar mode toggle
 # Validated working 4 JUNE
 # Top bar
 bar {
-	status_command i3status -c /home/kadar/.i3/bar/top.conf
+	status_command i3status -c /home/kadar/dotfiles/i3/bar/top.conf
 	position top
 	colors {
 		separator #666666
@@ -312,7 +316,7 @@ bar {
 
 # Bottom bar
 bar {
-	status_command i3status -c /home/kadar/.i3/bar/bottom.conf
+	status_command i3status -c /home/kadar/dotfiles/i3/bar/bottom.conf
 	position bottom
 	workspace_buttons no
 	colors {

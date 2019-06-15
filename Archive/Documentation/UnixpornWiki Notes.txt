@@ -1,0 +1,13 @@
+Step 1 - Distro
+Step 2 - DE or WM?
+Step 3 - Graphical elements, terminal, hybrid?
+Step 4 - Wallpapers and desktop elements
+Step 5 - Let's talk about color palettes
+Step 6 - Using a terminal
+Step 7 - Workflow - multi monitors, aliases, keyboard shortcuts
+Step 8 - Configurations
+Step 9 - Customizations and add ons
+	- docks
+	- conky
+	- bars (BAR, LemonBAR, i3bar)
+Step 10 - Fonts - the good, the bad and the ugly

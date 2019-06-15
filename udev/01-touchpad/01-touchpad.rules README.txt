@@ -1,0 +1,5 @@
+8/17/2016
+
+Readme for 01-touchpad.rules
+
+This is a udev script placed in /etc/udev/rules.d that automates a rule for hardware.  In this case, related to the addition/removal of a USB mouse to disable touchpad automatically.

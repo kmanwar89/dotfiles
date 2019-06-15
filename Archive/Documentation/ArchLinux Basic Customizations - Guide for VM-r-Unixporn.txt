@@ -1,0 +1,58 @@
+#ArchLinux Basic Packages
+
+Continuing the work started on the [create an Arch VM](https://www.reddit.com/r/unixporn/wiki/vm) page, this page will go over a how to install a base set of programs in this newly-minted VM.  By the end of the guide, we will have the following:
+
+* A display manager (graphical login screen) - [LXDM](https://wiki.archlinux.org/index.php/LXDM)
+* A DE (desktop environment) - [XFCE](https://wiki.archlinux.org/index.php/Xfce)
+* A WM (window manager) - [i3](https://wiki.archlinux.org/index.php/I3)
+* [X.org](https://wiki.archlinux.org/index.php/Xorg), to be able to render our graphical environment
+* [Yaourt](https://wiki.archlinux.org/index.php/Yaourt) - a great tool to help fetch packages from the [AUR](https://aur.archlinux.org/)
+* [Bash auto-completion](https://wiki.archlinux.org/index.php/Bash#Tab_completion) - because typing out commands is lame and tedious
+* [Virtualbox Guest additions](https://wiki.archlinux.org/index.php/VirtualBox#Guest_additions_disc) - necessary to get the best use out of our VM
+* [npm](https://www.archlinux.org/packages/community/any/npm/) - to install popular themes like [solarized](http://ethanschoonover.com/solarized)
+* [git](https://wiki.archlinux.org/index.php/Git) - to make grabbing repos from other users easier.  A lot of awesome scripts are hosted on GitHub.
+
+for this guide we will install some basic necessities that will help teach how to customize a system:
+	a display manager (LXDM)
+	a DE (xfce)
+	a WM (i3)
+	Xorg
+	yaourt
+	bash auto completion
+	virtualbox guest additions
+	npm (to install solarized theme)
+	git (to grab git repos)
+	grub
+	os-prober
+
+let's add the repository for yaourt first
+	nano /etc/pacman.conf
+	add the following to the bottom of the file:
+
+	[archlinux]fr
+	SigLever = Never
+	Server = http://repo.archlinux.fr/$arch
+
+
+singular command for everything:
+sudo pacman -S xorg-server xorg-server-utils xorg-xinit mesa xterm xorg-twm xorg-apps i3-wm i3status i3lock dmenu perl-anyevent-i3 perl-json-xs yaourt lxdm xfce4 xfce4-goodies bash-completion npm git virtualbox-guest-utils grub os-prober
+
+
+let's load the virtualbox modules so the guest additions work (screen resolution, shared clipboard, and other goodies).  we'll need all this to get the Xserver (graphical interface) working in our VM:
+
+sudo modprobe -a vboxguest vboxsf vboxvideo
+
+sudo nano /etc/modules-load.d/virtualbox.conf
+add the following:
+	vboxguest
+	vboxsf
+	vboxvideo
+
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+vim ~/.xinitrc
+
+ # add this inside .xinitrc (at the top, just below #!/bin/sh)
+
+/usr/bin/VBoxClient-all
+
+

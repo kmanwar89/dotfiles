@@ -1,0 +1,13 @@
+# nmcli con up id HomeVPN just a test, here for reference
+	One-liner to connect to PPTP VPN using nmcli (network manager CLI?) 
+	
+Website that goes over some customization/ricing stuff:
+	http://blog.z3bra.org/
+		specifically this talks about choosing colors based on wallpaper! really sweet!
+		
+for: [MASTER] Arch Linux Customization Guide.docx -- will need to sort through one day - 15 JUNE 2019
+
+
+for: ArchLinux Basic Customizations - Guide for VM-r-Unixporn -- I began writing some docs on how to use Arch in a VM. VM's pose certain issues, so I stopped writing this.
+
+for: UnixpornWiki Notes - this was the outline for the different guides I would write for Unixporn. May want to incorporate this into a website or something.

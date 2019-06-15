@@ -1,0 +1,2 @@
+SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/home/radak/dotfiles/battery.sh true"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/home/radak/dotfiles/AC.sh true"

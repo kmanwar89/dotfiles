@@ -1,0 +1,4 @@
+# power-backlight udev rule
+# Set screen backlight brightness dependent on power source type.
+SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/bin/power-backlight -b"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/bin/power-backlight -a"

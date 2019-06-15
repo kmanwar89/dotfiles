@@ -1,0 +1,1 @@
+This is a script that checks for public IP and emails it.  I don't want emailing functionality, but rather have it be in my i3status or conky
