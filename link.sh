@@ -48,5 +48,7 @@ sleep 5
 # files in home directory
 cp ~/dotfiles/home/.bash_aliases ~/
 cp ~/dotfiles/home/.bashrc ~/
+cp ~/dotfiles/home/.Xresources ~/
+cp ~/dotfiles/home/.gitconfig ~/
 echo "files for home directory copied!"
 sleep 5
