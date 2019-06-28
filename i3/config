@@ -234,13 +234,13 @@ exec --no-startup-id xset r rate 250 25
 #Touchscreen#
 #############
 # Disable touchscreen
-exec –no-startup-id xinput disable “ELAN Touchscreen”
+exec --no-startup-id xinput disable 'ELAN Touchscreen'
 
 ##########
 #Touchpad#
 ##########
 # Touchpad toggle script
-bindsym F7 exec --no-startup-id sh /home/kadar/.i3/touchpad/toggle.sh
+bindsym F7 exec --no-startup-id sh /home/kadar/dotfiles/scripts/touchpad/toggle.sh
 
 # Natural scrolling - included in toggle script
 # Disable while typing - included in toggle script
@@ -330,11 +330,11 @@ bar {
     }
 
 # Wallpaper
-set $wallpaper ~/Pictures/Backgrounds/bg.png  #set wallpaper variable to call later
-exec --no-startup-id feh --bg-scale $wallpaper
+#set $wallpaper ~/Pictures/Wallpaper/bg.jpg  #set wallpaper variable to call later
+#exec --no-startup-id feh --bg-scale $wallpaper
 
 # Set random wallpaper - found this in a config from MARCH 2017 - added here 11 JUNE 2019
-# exec --no-startup-id feh --randomize --bg-scale ~/.wallpaper/*
+exec --no-startup-id feh --randomize --bg-scale ~/Pictures/Wallpaper
 
 # Autostart compton
 exec --no-startup-id compton -cb

@@ -3,7 +3,9 @@
 
 echo "Installing necessary packages..."
 sleep 3
-sudo apt-get install git xclip ssh -y
+# for Ubuntu --> sudo apt-get install git xclip ssh -y
+# for Arch
+pacman -Sy --noconfirm xclip
 echo " "
 echo " "
 
