@@ -2,7 +2,7 @@
 alias cls='clear'
 alias log='journalctl -f'
 alias top='htop'
-alias f='fuck'
+#alias f='fuck'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
@@ -38,4 +38,3 @@ export PS1="\[\e[35m\]\t\[\e[m\] \[\e[32m\]\u\[\e[m\]@\[\e[36m\][\[\e[m\]\[\e[36
 
 # Misc
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|#tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$>
-
