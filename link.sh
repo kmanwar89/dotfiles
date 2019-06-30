@@ -19,12 +19,13 @@ sleep 2
 # files in /home/kadar (bashrc, bash_aliases, bashrc)
 cp /home/kadar/dotfiles/home/.bash_aliases /home/kadar/
 cp /home/kadar/dotfiles/home/.bashrc /home/kadar/
-cp /home/kadar/dotfiles/home/.bash_aliases /home/kadar/
+cp /home/kadar/dotfiles/home/.Xresources /home/kadar/
+cp /home/kadar/dotfiles/home/.gitconfig /home/kadar/
 echo "Files in home directory copied!"
 sleep 2
 
 # pictures for wallpaper
-cp -r /home/kadar/dotfiles/Pictures/ /home/kadar/
+»cp -r /home/kadar/dotfiles/Pictures/ /home/kadar/
 echo "Pictures/Wallpapers copied!"
 sleep 2
 
@@ -43,12 +44,4 @@ sleep 2
 cp /home/kadar/dotfiles/scripts/bash-powerline/.bash-powerline.sh /home/kadar
 echo -e '\nsource /home/kadar/.bash_powerline.sh'
 echo "bash powerline files copied!"
-sleep 2
-
-# files in home directory
-cp /home/kadar/dotfiles/home/.bash_aliases /home/kadar/
-cp /home/kadar/dotfiles/home/.bashrc /home/kadar/
-cp /home/kadar/dotfiles/home/.Xresources /home/kadar/
-cp /home/kadar/dotfiles/home/.gitconfig /home/kadar/
-echo "files for home directory copied!"
 sleep 2
