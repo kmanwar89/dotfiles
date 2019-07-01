@@ -30,13 +30,13 @@ echo " "
 
 echo "Adding SSH key to SSH-Agent..."
 sleep 5
-ssh-add ~/.ssh/id_rsa
+mkdir /home/kadar/.ssh && ssh-add /home/kadar/.ssh/id_rsa
 echo " "
 echo " "
 
 echo "Copying SSH key to clipboard"
 sleep 5
-xclip -sel clip < ~/.ssh/id_rsa.pub
+xclip -sel clip < /home/kadar/.ssh/id_rsa.pub
 echo " "
 echo " "
 
