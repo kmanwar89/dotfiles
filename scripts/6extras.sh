@@ -8,3 +8,5 @@ echo " "
 sleep 3
 pacman -Sy --noconfirm git bash-completion powertop htop tlp nmon unzip compton ranger thunar atom tilda hexchat plank conky arc-gtk-theme
 sleep 3
+#option #1
+yay teamviewer 
