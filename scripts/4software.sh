@@ -1,6 +1,5 @@
 #! /bin/bash
 # Purpose of this script is to automate installing software necessary for the base system functionality
-# To-do: get a package list once I have everything perfect and just import that into pacman instead
 
 echo "Installing base software (audio, bluetooth, others)"
 echo " "

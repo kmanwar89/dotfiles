@@ -13,6 +13,7 @@
 #sudo mkdir /efi/EFI/refind/themes
 #git clone https://github.com/mireq/rEFInd-Catalina.git && cd rEFInd-Catalina/refind/ && sudo cp -r Catalina /efi/EFI/refind/themes/
 #echo $'\n\n'# rEFInd Catalina Theme$'\n'#Source: https://github.com/mireq/rEFInd-Catalina$'\n'include themes/Catalina/theme.conf >> /efi/EFI/refind/refind.conf
+#sed -i 's/#resolution 3/resolution 1920 1080/g' /efi/EFI/refind/refind.conf
 
 # Install audio
 pacman -Sy --noconfirm pulseaudio pavucontrol pulseaudio-alsa alsa-utils
