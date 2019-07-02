@@ -1,11 +1,11 @@
 #! /bin/bash
-# Purpose of this script is to automate installing software
+# Purpose of this script is to automate installing software necessary for the base system functionality
 # To-do: get a package list once I have everything perfect and just import that into pacman instead
-echo "Installing software..."
+
+echo "Installing base software (audio, bluetooth, others)"
 echo " "
 sleep 1
-pacman -Sy --noconfirm lxdm xorg-xinit mesa xterm xorg-twm xorg-apps xorg-xclock i3-wm i3status i3lock dmenu perl-anyevent-i3 perl-json-xs synaptics net-tools light git bash-completion alsa-utils powertop htop tlp openssh vi ttf-font-awesome nmon unzip compton ranger thunar ttf-dejavu dialog wpa_supplicant atom tilda feh hexchat plank conky arc-gtk-theme wget firefox imagemagick rofi scrot
-sleep 3
+pacman -Sy --noconfirm lxdm xorg-xinit mesa xterm xorg-twm xorg-apps xorg-xclock i3-wm i3status i3lock dmenu perl-anyevent-i3 perl-json-xs synaptics net-tools light pulseaudio pavucontrol pulseaudio-alsa alsa-utils openssh vi ttf-font-awesome ttf-dejavu dialog wpa_supplicant feh wget firefox imagemagick rofi scrot
 
 # Enable LXDM
 systemctl enable lxdm
