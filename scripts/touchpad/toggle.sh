@@ -30,6 +30,6 @@ else
 	syndaemon -i 1 -d
 
 	# Natural scrolling
-	synclient HorizScrollDelta=-30
-	synclient VertScrollDelta=-30
+#	synclient HorizScrollDelta=-30
+#	synclient VertScrollDelta=-30
 fi

@@ -15,5 +15,5 @@ xinput disable "Synaptics s3203_ver5"
 syndaemon -i 1 -d
 
 # Natural Scrolling
-synclient VertScrollDelta=-30
-synclient HorizScrollDelta=-30
+#synclient VertScrollDelta=-30
+#synclient HorizScrollDelta=-30
