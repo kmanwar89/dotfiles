@@ -12,7 +12,7 @@ xinput disable "Synaptics s3203_ver5"
 #notify-send "Touchpad" "Touchpad Enabled" -i /path/to/enabled.jpg -t 1000
 
 # Keyboard delay of 1 second after finish typing
-syndaemon -i 1 -d
+# syndaemon -i 1 -d
 
 # Natural Scrolling
 #synclient VertScrollDelta=-30
