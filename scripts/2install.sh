@@ -13,4 +13,9 @@ echo "Generating fstab..."
 sleep 1
 genfstab -U /mnt >> /mnt/etc/fstab
 sleep 3
+echo "Copy over dotfiles into the install environment's home directory to allow scripts to move forward"
+sleep 3
+cd /mnt/home/ && git clone https://github.com/kmanwar89/dotfiles.git
+sleep 3
 echo "Chrooting into install environment. Run '3config.sh'"
+arch-chroot /mnt/home
