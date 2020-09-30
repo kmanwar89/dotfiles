@@ -1,6 +1,7 @@
 #! /bin/bash
 # Purpose of this script is to automate the creation, formatting and mounting of partitions during an ArchLinux install following a standard partitioning scheme
 # Author: Kadar M Anwar
+
 # Create partitions
 echo "Creating partitions..."
 sleep 2
@@ -20,7 +21,7 @@ sleep 3
 echo "Formatting partitions"
 sleep 2
 mkfs.fat -F32 /dev/sda1
-mkswap /dev/sda2 && swapon /dev/sda
+mkswap /dev/sda2 && swapon /dev/sda2
 echo y | mkfs.ext4 /dev/sda3
 sleep 2
 echo "Partition formatting completed!"
@@ -35,5 +36,3 @@ mkdir /mnt/efi
 mount /dev/sda1 /mnt/efi
 sleep 2
 echo "Partitions mounted!"
-sleep 3
-echo "Connect to the internet using wifi-menu"
