@@ -11,4 +11,4 @@ echo "Generating fstab..."
 sleep 1
 genfstab -U /mnt >> /mnt/etc/fstab
 sleep 3
-echo "Install complete. Run '3config.sh' once chrooted into the install environment"
+echo "Chrooting into install environment. Run '3config.sh'"
