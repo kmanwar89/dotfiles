@@ -2,10 +2,10 @@
 # Purpose of this script is to automate the remaining ArchLinux install commands prior to chrooting into the installed environment
 timedatectl set-ntp true
 pacman -Sy --noconfirm reflector
-reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country US --country Canada --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sleep 5
 # Installation of base system
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware
 sleep 2
 echo "Generating fstab..."
 sleep 1
