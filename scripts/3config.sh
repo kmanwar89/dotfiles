@@ -56,7 +56,7 @@ sleep 5
 echo "Adding user to /etc/sudoers"
 echo " "
 sudo sh -c "echo \"kadar ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers
-sudo sh -c "echo \"thanatos LL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers
+sudo sh -c "echo \"thanatos ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers
 sleep 3
 echo "Validate sudoers has been updated"
 sleep 2
