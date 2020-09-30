@@ -1,7 +1,8 @@
 #! /bin/bash
 # Purpose of this script is post-installation base configurations, in line with Arch install guide
 
-# While in chroot, need to re-install git, nano & vim, and re-clone the repository
+# While in chroot, need to re-install git, nano & vim
+pacman -Sy --noconfirm git nano vim
 
 # Timezone config
 echo "Timezone stuff"
