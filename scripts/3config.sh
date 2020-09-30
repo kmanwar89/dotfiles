@@ -49,7 +49,7 @@ echo " "
 sleep 3
 
 # Adding users
-useradd -m -g users -s /bin/bash kadar
+useradd -m -g users -s /bin/zsh kadar
 useradd -m -g users -s /bin/bash thanatos
 cat /etc/passwd
 sleep 5
