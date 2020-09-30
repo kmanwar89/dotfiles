@@ -1,6 +1,8 @@
 #! /bin/bash
 # Purpose of this script is post-installation base configurations, in line with Arch install guide
 
+# While in chroot, need to re-install git, nano & vim, and re-clone the repository
+
 # Timezone config
 echo "Timezone stuff"
 sleep 1
