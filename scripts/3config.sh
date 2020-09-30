@@ -63,7 +63,9 @@ cat /etc/sudoers | grep thanatos
 
 # Installing & Configuring rEFInd bootloader, and adding correct options to /boot/refind_linux.conf
 pacman -Sy --noconfirm refind-efi intel-ucode
+mkdir /efi && mount /dev/sda1 /efi
 refind-install
-echo -e " \"Boot using default options\" \t\t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img uiet\" " >> /boot/refind_linux.conf
+rm //boot/refind_linux.conf && touch //boot/refind_linux.conf
+echo -e " \"Boot using default options\" \t\t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img quiet\" " >> /boot/refind_linux.conf
 echo -e " \"Boot using fallback initramfs\" \t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux-fallback.img quiet\" " >> /boot/refind_linux.conf
 echo -e " \"Boot to terminal\" \t\t\t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img systemd.unit=multi-user.target quiet\" " >> /boot/refind_linux.conf
