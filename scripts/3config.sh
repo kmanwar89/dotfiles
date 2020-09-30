@@ -14,6 +14,7 @@ echo "Configuring Locale"
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
+echo "Generating Locale"
 locale-gen
 echo "Validating locale..."
 sleep 1
@@ -48,9 +49,17 @@ sleep 3
 useradd -m -g users -s /bin/bash kadar
 useradd -m -g users -s /bin/bash thanatos
 cat /etc/passwd
-echo "Be sure to create passwords for the users once the script completes, and add them to /etc/sudoers!"
+sleep 5
+echo "Adding user to /etc/sudoers"
 echo " "
+sudo sh -c "echo \"kadar ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers
+sudo sh -c "echo \"thanatos LL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers
 sleep 3
+echo "Validate sudoers has been updated"
+sleep 2
+echo " "
+cat /etc/sudoers | grep kadar
+cat /etc/sudoers | grep thanatos
 
 # Installing & Configuring rEFInd bootloader, and adding correct options to /boot/refind_linux.conf
 pacman -Sy --noconfirm refind-efi intel-ucode
@@ -58,7 +67,3 @@ refind-install
 echo -e " \"Boot using default options\" \t\t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img uiet\" " >> /boot/refind_linux.conf
 echo -e " \"Boot using fallback initramfs\" \t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux-fallback.img quiet\" " >> /boot/refind_linux.conf
 echo -e " \"Boot to terminal\" \t\t\t \"root=PARTLABEL=Arch rw add_efi_memmap initrd=/boot/intel-ucode.img initrd=/boot/initramfs-linux.img systemd.unit=multi-user.target quiet\" " >> /boot/refind_linux.conf
-
-# Setting WiFi regulatory domain for US
-echo "Setting US WiFi regulatory domain"
-iw reg set US
