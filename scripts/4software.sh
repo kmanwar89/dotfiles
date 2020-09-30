@@ -1,6 +1,11 @@
 #! /bin/bash
 # Purpose of this script is to automate installing software necessary for the base system functionality
 
+# Switch users and install some software as non-root
+su kadar
+cd ~ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+exit
+
 echo "Installing base software (audio, bluetooth, others)"
 echo " "
 sleep 1
