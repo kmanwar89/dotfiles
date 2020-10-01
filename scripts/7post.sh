@@ -6,11 +6,6 @@
 sudo su
 touch /etc/iwd/main.conf
 echo -e '[General]'
-echo -e '\n'
-echo -e '# uncomment for setting the wifi interface name yourself'
-echo -e '# see https://iwd.wiki.kernel.org/interface_lifecycle'
-echo -e '#UseDefaultInterface=true'
-echo -e '\n'
 echo -e \# enable builtin DHCP-client within iwd for wifi'
 echo -e 'EnableNetworkConfiguration=true'
 echo -e '\n'
@@ -21,5 +16,4 @@ echo -e 'AddressRandomization=once'
 #sudo systemctl enable --now iwd.service
 #sudo systemctl start iwd.service
 sudo systemctl enable --now iwd
-
 exit
