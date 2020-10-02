@@ -1,7 +1,9 @@
 #! /bin/bash
-# Purpose of this script is to automate the creation, formatting and mounting of partitions during an ArchLinux install following a standard partitioning scheme
+# Purpose: Combined script to take an Arch install start to finish.
 # Author: Kadar M Anwar
+# Version 0.1 - 1 OCT 2020
 
+# Part 1 - Partition creating, formatting, mounting.
 # Create partitions
 echo "Creating partitions..."
 sleep 2
@@ -27,7 +29,6 @@ sleep 2
 echo "Partition formatting completed!"
 sleep 3
 
-
 # Mount partitions
 echo "Mounting partitions to mountpoints"
 sleep 2
@@ -37,11 +38,13 @@ mount /dev/sda1 /mnt/efi
 sleep 2
 echo "Partitions mounted!"
 
-# Purpose of this script is to automate the remaining ArchLinux install commands prior to chrooting into the installed environment
+# Part 2 - Base install & pre-chroot setup
+
+# Set NTP and update mirrorlist
 timedatectl set-ntp true
 pacman -Sy --noconfirm reflector
 reflector --country US --country Canada --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-sleep 5
+sleep 3
 
 # Installation of base system
 pacstrap /mnt base base-devel linux linux-firmware
@@ -50,30 +53,14 @@ echo "Generating fstab..."
 sleep 1
 genfstab -U /mnt >> /mnt/etc/fstab
 sleep 3
-echo "Copy over dotfiles into the install environment's home directory to allow scripts to move forward"
+echo "Copy over dotfiles into the chroot environment"
 sleep 3
 cd /mnt/home/ && git clone https://github.com/kmanwar89/dotfiles.git
 sleep 3
-echo "Chrooting into install environment. Run '3config.sh'"
-arch-chroot /mnt
+echo "Installation complete. Chroot into the new environment and run 3config.sh to continue configuration."
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Purpose of this script is post-installation base configurations, in line with Arch install guide
+# Part 3 - Post-installation base configuration of system
+# Note: This will include all steps that can be executed as root, but not steps involving "yay"
 
 # While in chroot, need to re-install git, nano & vim
 pacman -Sy --noconfirm git nano vim
@@ -123,7 +110,7 @@ echo " "
 sleep 3
 
 # Adding users
-useradd -m -g users -s /bin/zsh kadar
+useradd -m -g users -s /bin/bash kadar # set bash for now, change it later.
 useradd -m -g users -s /bin/bash thanatos
 cat /etc/passwd
 sleep 5
@@ -137,6 +124,10 @@ sleep 2
 echo " "
 cat /etc/sudoers | grep kadar
 cat /etc/sudoers | grep thanatos
+sleep 2
+echo " "
+echo "Be sure to use 'passwd' to set user passwords!"
+sleep 5
 
 # Installing & Configuring rEFInd bootloader, and adding correct options to /boot/refind_linux.conf
 pacman -Sy --noconfirm refind-efi intel-ucode
