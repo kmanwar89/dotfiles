@@ -93,7 +93,3 @@ exit # Leave the chroot
 EOF
 
 arch-chroot /mnt /home/dotfiles/part2.sh
-
-# Commands after leaving chroot
-umount -R /mnt
-reboot
